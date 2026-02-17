@@ -369,6 +369,126 @@
       color: var(--muted);
     }
 
+    /* ─── GUIDE ─── */
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      animation: fadeUp 0.5s ease 0.55s both;
+    }
+
+    @media (max-width: 860px) { .guide-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .guide-grid { grid-template-columns: 1fr; } }
+
+    .guide-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .guide-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s ease;
+    }
+
+    .guide-header:hover { background: var(--bg); }
+
+    .guide-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .guide-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .guide-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .guide-chevron {
+      width: 16px;
+      height: 16px;
+      color: var(--muted);
+      transition: transform 0.22s ease;
+      flex-shrink: 0;
+    }
+
+    .guide-card.open .guide-chevron {
+      transform: rotate(180deg);
+    }
+
+    .guide-body {
+      display: none;
+      padding: 0 20px;
+    }
+
+    .guide-card.open .guide-body {
+      display: block;
+    }
+
+    .guide-step {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .guide-step:last-child { border-bottom: none; }
+
+    .step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-text {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .step-text strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .step-note {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 11px;
+      color: #92400e;
+      background: #fffbeb;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
     /* ─── ANIMATION ─── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(14px); }
@@ -509,6 +629,100 @@
       </div>
     </div>
 
+    <!-- GUIDE SECTION -->
+    <div class="section-header" style="margin-top: 60px;">
+      <div class="section-title">מדריך שימוש מהיר</div>
+      <div class="section-count">לחץ על מערכת לפרטים</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="guide-grid">
+
+      <!-- CHECKOUT GUIDE -->
+      <div class="guide-card" id="guide-checkout">
+        <div class="guide-header" onclick="toggleGuide('guide-checkout')">
+          <div class="guide-header-left">
+            <span class="guide-tag tag-blue">Checkout</span>
+            <span class="guide-title">רישום יציאת ציוד</span>
+          </div>
+          <svg class="guide-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6,9 12,15 18,9"/>
+          </svg>
+        </div>
+        <div class="guide-body">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>מלא את הפרטים</strong> — שם החותם, מספר אישי, שם האירוע, תאריכי משיכה והחזרה.</div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>הוסף ציוד</strong> — בחר פריטים מהרשימה הנפתחת או הקלד מק"ט ידנית בשדה הטקסט.<br/>
+              <span class="step-note">ברקוד — אופציונלי בלחיצה על "סרוק"</span>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>הדפס את המסמך</strong> — לחץ "הדפס" לקבלת טופס חתימה. הנתונים נשמרים אוטומטית.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RETURN GUIDE -->
+      <div class="guide-card" id="guide-return">
+        <div class="guide-header" onclick="toggleGuide('guide-return')">
+          <div class="guide-header-left">
+            <span class="guide-tag tag-green">Return</span>
+            <span class="guide-title">החזרת ציוד</span>
+          </div>
+          <svg class="guide-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6,9 12,15 18,9"/>
+          </svg>
+        </div>
+        <div class="guide-body">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>בחר אירוע</strong> — הרשימה מציגה אוטומטית את כל האירועים הפתוחים (סטטוס OUT).</div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>לחץ "סמן כהוחזר"</strong> — הסטטוס מתעדכן מיידית ל-IN במאגר הנתונים.</div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>הרשימה מתרעננת</strong> — האירוע נעלם מהרשימה אוטומטית לאחר אישור ההחזרה.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DASHBOARD GUIDE -->
+      <div class="guide-card" id="guide-dash">
+        <div class="guide-header" onclick="toggleGuide('guide-dash')">
+          <div class="guide-header-left">
+            <span class="guide-tag tag-amber">Dashboard</span>
+            <span class="guide-title">דשבורד בקרה</span>
+          </div>
+          <svg class="guide-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6,9 12,15 18,9"/>
+          </svg>
+        </div>
+        <div class="guide-body">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>בחר תאריך</strong> — ברירת מחדל היום. ניתן לסנן לכל תאריך אחר.</div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>חיפוש חופשי</strong> — חפש לפי שם אירוע, חותם, מוצר או מספר מסמך.</div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>לחץ על חץ</strong> לפתיחת רשימת הציוד של כל אירוע. לחץ "סטטיסטיקות" לגרפים ואנליטיקה.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </main>
 
   <!-- FOOTER -->
@@ -529,6 +743,11 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
+
+    function toggleGuide(id) {
+      const card = document.getElementById(id);
+      card.classList.toggle('open');
+    }
   </script>
 
 </body>
