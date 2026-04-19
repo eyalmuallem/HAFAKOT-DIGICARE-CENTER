@@ -1,18 +1,19 @@
 {
   "name": "Digicare",
   "short_name": "Digicare",
-  "start_url": "/HAFKOT-DIGICARE-CENTER/index.html",
+  "start_url": "/HAFAKOT-DIGICARE-CENTER/",
+  "scope": "/HAFAKOT-DIGICARE-CENTER/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
   "icons": [
     {
-      "src": "logo.png",
+      "src": "/HAFAKOT-DIGICARE-CENTER/logo.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "logo.png",
+      "src": "/HAFAKOT-DIGICARE-CENTER/logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }
